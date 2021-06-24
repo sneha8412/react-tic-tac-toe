@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
 import Board from './components/Board';
+import TicTacToeComputeWinner from './TicTacToeComputeWinner';
 
 const PLAYER_1 = 'x';
 const PLAYER_2 = 'o';
@@ -39,7 +40,12 @@ const App = () => {
   //   When it is clicked on.
   //   Then pass it into the squares as a callback
   const onClickCallback = (id, e) => {
-    console.log('square button pressed: ', id);
+    //console.log('square button pressed: ', id);
+
+    if (winner !== '')
+    {
+      return;
+    }
 
     const rowNum = Math.floor(id / squares.length);
     const colNum = id % squares.length;
@@ -62,6 +68,14 @@ const App = () => {
     setPlayer(nextPlayer);
 
     setStatusMessage(`Current Player ${nextPlayer}`);
+
+    const computedWinner = checkForWinner();
+    console.log('computed winner:', computedWinner);
+
+    if (computedWinner === PLAYER_1 || computedWinner === PLAYER_2){
+      setWinner(computedWinner);
+      setStatusMessage(`Winner is ${computedWinner}`);
+    }
   };
 
 
@@ -75,6 +89,8 @@ const App = () => {
     //    3 squares in each column match
     // 3. Go across each diagonal to see if 
     //    all three squares have the same value.
+
+    return TicTacToeComputeWinner(squares);
 
   }
 
