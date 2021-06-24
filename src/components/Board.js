@@ -36,7 +36,7 @@ const Board = ({ squares, onClickCallback }) => {
     //console.log('sq-id:', sq.id);
 
     return (
-       <div key={sq.id}><Square id={sq.id} value={sq.value} onClickCallback={onClickCallback}></Square></div>
+       <Square id={sq.id} value={sq.value} onClickCallback={onClickCallback}></Square>
      );
     });
 
