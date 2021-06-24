@@ -58,32 +58,32 @@ const generateSquareComponents = (squares, onClickCallback) => {
   let oneDSquares = [];
 
   for (const sqrow of squares){
-    console.log('sq-row:', sqrow);
+    //console.log('sq-row:', sqrow);
     for (const sqcol of sqrow){
-      console.log('sq-col:', sqcol);
+      //console.log('sq-col:', sqcol);
       oneDSquares.push(sqcol);
     }
   }
-  console.log('1d squares:', oneDSquares);
+  //console.log('1d squares:', oneDSquares);
 
   return oneDSquares;
 }
 
 const Board = ({ squares, onClickCallback }) => {
   
-  console.log('squares:', squares);
+  //console.log('squares:', squares);
   
-  squares = SAMPLE_BOARD;
+  //squares = SAMPLE_BOARD;
 
   const squareList = generateSquareComponents(squares, onClickCallback);
-  console.log(squareList);
+  console.log('1-d square list', squareList);
   
   const squareItems = squareList.map((sq) => {
     //console.log('sq-value:', sq.value);
     //console.log('sq-id:', sq.id);
 
     return (
-       <div key={sq.id}><Square id={sq.id} value={sq.value} onClickCallback={() => {}}></Square></div>
+       <div key={sq.id}><Square id={sq.id} value={sq.value} onClickCallback={onClickCallback}></Square></div>
      );
     });
 

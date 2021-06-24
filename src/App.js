@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import './App.css';
-
 import Board from './components/Board';
 
-const PLAYER_1 = 'X';
-const PLAYER_2 = 'O';
+const PLAYER_1 = 'x';
+const PLAYER_2 = 'o';
 
 const generateSquares = () => {
   const squares = [];
@@ -29,12 +28,41 @@ const App = () => {
 
   // This starts state off as a 2D array of JS objects with
   // empty value and unique ids.
+  //initialize the state for squares, players and winner
   const [squares, setSquares] = useState(generateSquares());
+  const [player, setPlayer] = useState(PLAYER_1);
+  const [statusMessage, setStatusMessage] = useState('');
+  const [winner, setWinner] = useState('');
 
   // Wave 2
   // You will need to create a method to change the square 
   //   When it is clicked on.
   //   Then pass it into the squares as a callback
+  const onClickCallback = (id, e) => {
+    console.log('square button pressed: ', id);
+
+    const rowNum = Math.floor(id / squares.length);
+    const colNum = id % squares.length;
+
+    console.log('row_num', rowNum);
+    console.log('col_num', colNum);
+
+    // set the value of the square on square button click
+    squares[rowNum][colNum] = {id:id, value:player};
+
+    let nextPlayer = '';
+    // toggle player
+    if (player === PLAYER_1){
+      nextPlayer = PLAYER_2;
+    }
+    else {
+      nextPlayer = PLAYER_1;
+    }
+
+    setPlayer(nextPlayer);
+
+    setStatusMessage(`Current Player ${nextPlayer}`);
+  };
 
 
   const checkForWinner = () => {
@@ -51,21 +79,28 @@ const App = () => {
   }
 
   const resetGame = () => {
-    // Complete in Wave 4
-  }
+
+      setSquares(generateSquares());
+      const initialPlayer = PLAYER_1; // I decided initial player is 1
+      setPlayer(initialPlayer);
+      setWinner('');
+      setStatusMessage(`Current player ${initialPlayer}`);
+    };
+  
 
   return (
     <div className="App">
       <header className="App-header">
         <h1>React Tic Tac Toe</h1>
-        <h2>The winner is ... -- Fill in for wave 3 </h2>
-        <button>Reset Game</button>
+        <h2>{statusMessage}</h2>
+        <button onClick={resetGame}>Reset Game</button>
       </header>
       <main>
-        <Board squares={squares} onClickCallback={() => {}} />
+        <Board squares={squares} onClickCallback={onClickCallback} />
       </main>
     </div>
   );
-}
+
+};
 
 export default App;

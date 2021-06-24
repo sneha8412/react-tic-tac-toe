@@ -12,8 +12,7 @@ const Square = (props) => {
   //console.log('Square class: id', props.id);
   //console.log('Square class: onClickCallback', props.onClickCallback);
 
-  return <button
-    className="square">
+  return <button className="square" onClick={(e) => props.onClickCallback(props.id, e)}>
     {props.value}
   </button>
 }
