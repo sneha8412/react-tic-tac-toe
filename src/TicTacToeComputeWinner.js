@@ -77,7 +77,7 @@ const e = '';
       }
     }
 
-    console.log('getWinningRowCol = ', winner);
+    //console.log('getWinningRowCol = ', winner);
   
     return winner;
   };

@@ -27,7 +27,7 @@ const Board = ({ squares, onClickCallback }) => {
   //squares = SAMPLE_BOARD;
 
   const squareList = generateSquareComponents(squares, onClickCallback);
-  console.log('1-d square list', squareList);
+  //console.log('1-d square list', squareList);
   
   const squareItems = squareList.map((sq) => {
     //console.log('sq-value:', sq.value);
