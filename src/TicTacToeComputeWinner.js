@@ -17,7 +17,7 @@ const e = '';
     let winner = e;
     let rowCounts = [];
     let colCounts = [];
-    let emptySquareValues = 0;
+    let emptySquareCounts = matrix.length * matrix.length;
 
     for (let rowIndex = 0; rowIndex < matrix.length; rowIndex++) 
     {
@@ -28,26 +28,25 @@ const e = '';
 
       for (let colIndex = 0; colIndex < matrix[rowIndex].length; colIndex++)
       {      
-        let value = matrix[rowIndex][colIndex];
+        let sqValue = matrix[rowIndex][colIndex];
 
-        if (value !== e)
+        if (sqValue !== null)
         { 
-          incrementCount(rowCounts[rowIndex], value);
+          incrementCount(rowCounts[rowIndex], sqValue);
   
           if (! (colIndex in colCounts))
           {
             colCounts[colIndex] = {x:0, o:0};
           }
   
-          incrementCount(colCounts[colIndex], value);
+          incrementCount(colCounts[colIndex], sqValue);
 
           //console.log(`rowCounts`, rowCounts);
           //console.log(`colCounts`, colCounts);
-
-        }
-        else
-        {
-          emptySquareValues += 1;
+          if (sqValue.value != e){
+            emptySquareCounts -= 1;
+          }
+          console.log('empty square counts:', emptySquareCounts);
         }
       }
     }
@@ -63,7 +62,7 @@ const e = '';
     if (winner === e){
       winner = getWinningDiag(matrix, true)};
 
-    if (winner == e && emptySquareValues === 0){
+    if (winner == e && emptySquareCounts === 0){
       winner = 'tie';  
     }
 
