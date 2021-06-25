@@ -17,10 +17,10 @@ const e = '';
     let winner = e;
     let rowCounts = [];
     let colCounts = [];
-  
+    let emptySquareValues = 0;
+
     for (let rowIndex = 0; rowIndex < matrix.length; rowIndex++) 
     {
-
       if (!(rowIndex in rowCounts))
       {
         rowCounts[rowIndex] = {x:0, o:0};
@@ -45,6 +45,10 @@ const e = '';
           //console.log(`colCounts`, colCounts);
 
         }
+        else
+        {
+          emptySquareValues += 1;
+        }
       }
     }
   
@@ -58,7 +62,11 @@ const e = '';
   
     if (winner === e){
       winner = getWinningDiag(matrix, true)};
-  
+
+    if (winner == e && emptySquareValues === 0){
+      winner = 'tie';  
+    }
+
     return winner;
   };
   

@@ -80,6 +80,9 @@ const App = () => {
       setWinner(computedWinner);
       setStatusMessage(`Winner is ${computedWinner}`);
     }
+    else if (computedWinner === 'tie'){
+      setStatusMessage(`Tie!`);
+    }
   };
 
   const checkForWinner = () => {
