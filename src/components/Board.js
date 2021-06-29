@@ -16,14 +16,11 @@ const generateSquareComponents = (squares, onClickCallback) => {
     }
   }
   //console.log('1d squares:', oneDSquares);
-
   return oneDSquares;
 }
 
 const Board = ({ squares, onClickCallback }) => {
-  
   //console.log('squares:', squares);
-  
   //squares = SAMPLE_BOARD;
 
   const squareList = generateSquareComponents(squares, onClickCallback);
@@ -32,12 +29,10 @@ const Board = ({ squares, onClickCallback }) => {
   const squareItems = squareList.map((sq) => {
     //console.log('sq-value:', sq.value);
     //console.log('sq-id:', sq.id);
-
     return (
        <Square id={sq.id} value={sq.value} onClickCallback={onClickCallback}></Square>
      );
     });
-
 
   return <div className="grid" >
     {squareItems}

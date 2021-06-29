@@ -56,7 +56,6 @@ const App = () => {
 
     //console.log('row_num', rowNum);
     //console.log('col_num', colNum);
-
     // set the value of the square on square button click
     squares[rowNum][colNum] = {id:id, value:player};
 
